@@ -17,4 +17,7 @@ describe('Suite de manipulação de Herois', () => {
     const [realResult] = await database.listar(expected.id);
     deepEqual(realResult, expected);
   });
+  it.only('deve remover um heroi por id', async () => {
+    await database.remover(1);
+  });
 });

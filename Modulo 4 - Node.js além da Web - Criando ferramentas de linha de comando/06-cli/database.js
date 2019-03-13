@@ -36,6 +36,21 @@ class Database {
 
     return dadosFilter;
   }
+  async remover(id) {
+    const dados = await this.obterDadosArquivo();
+    const index = dados.findIndex(item => item.id !== parseInt(id));
+
+    if (index === -1) {
+      throw Error('heroi não existe');
+    }
+
+    const atual = dados[index];
+
+    dados.splice(atual, 1);
+    console.log(dados);
+    await this.escreverArquivo(dados);
+    return true;
+  }
 }
 
 module.exports = new Database();
